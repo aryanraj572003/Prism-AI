@@ -48,7 +48,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
           ))
         }
       </div>
-      <div onClick={() => { Navigate('/community'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all dark:text-white'>
+      <div onClick={() => { navigate('/community'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all dark:text-white'>
         <img src={assets.gallery_icon} alt="" className='w-4.5 not-dark:invert ' />
         <div className='flex flex-col text-sm'>
           <p>Community Images</p>
@@ -57,7 +57,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
       <HoverBorderGradient
         containerClassName="rounded-md mt-4 w-full"
         className="flex items-center gap-2 p-3 cursor-pointer w-full justify-start"
-        onClick={() => {Navigate('/credits'); setIsMenuOpen(false)}}
+        onClick={() => {navigate('/credits'); setIsMenuOpen(false)}}
       >
         <img src={assets.diamond_icon} alt="" className="w-4.5 dark:invert" />
         <div className="flex flex-col text-sm text-left">

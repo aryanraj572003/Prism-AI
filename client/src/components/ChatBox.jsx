@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import Message from "./Message";
-import { LoaderFive, LoaderFour, LoaderOne, LoaderThree, LoaderTwo } from "./ui/loader";
+import { LoaderFive } from "./ui/loader";
 
 
 
@@ -50,7 +50,7 @@ export const ChatBox = () => {
   },[messages])
 
   return (
-    <div className="flex-1 flex flex-col justify-between m-5 md:m-10 xl:mx-30 max-md mt-14 2xl:pr-40">
+    <div className="flex-1 flex flex-col justify-between m-5 md:m-1 xl:mx-30 max-md mt-14 2xl:pr-40">
       <div ref={containerRef} className="flex-1 mb-3 overflow-y-scroll">
         {messages.length === 0 && (
           <div className="h-full flex flex-col items-center justify-center gap-2 text-primary">
@@ -73,17 +73,11 @@ export const ChatBox = () => {
       }
 
       
-        {mode === 'image' && (
-          <label className="inline-flex items-center gap-2 mb-3 text-sm mx-auto text-white">
-            <p className="text-xs">Publish Generated Image to Community</p>
-            <input type="checkbox" className="cursor-pointer" checked={isPublished} onChange={(e)=>{setIsPublished(e.target.checked)}}/>
-          </label>
-        )}
       
 
 
       <form
-        className={`bg-primary/20 dark:bg-[#583C79]/30 border border-primary dark:border-[#80609F]/30 
+        className={`bg-primary/20 dark:bg-[#352372]/30 border border-primary dark:border-[#80609F]/30 
       w-full max-w-2xl p-3 pl-4 mx-auto flex gap-4 items-center text-white transition-all
       ${isExpanded ? "rounded-2xl" : "rounded-full"}`}
       >
@@ -93,8 +87,8 @@ export const ChatBox = () => {
           value={mode}
           className="text-sm pl-3 pr-2 bg-transparent outline-none "
         >
-          <option className="bg-purple-900" value="text">Text</option>
-          <option className="bg-purple-900" value="image">Image</option>
+          <option className="bg-transparent text-black" value="text">Text</option>
+          <option className="bg-transparent text-black  border rounded-lg" value="image">Image</option>
         </select>
 
         {/* Auto-expanding textarea */}
@@ -113,6 +107,14 @@ export const ChatBox = () => {
           <img src={loading ? assets.stop_icon : assets.send_icon} alt="send" />
         </button>
       </form>
+      <div className=" flex h-7 items-center">
+      {mode === 'image' && (
+          <label className="inline-flex items-center gap-2 text-sm mx-auto text-white">
+            <p className="text-xs">Publish Generated Image to Community</p>
+            <input type="checkbox" className="cursor-pointer" checked={isPublished} onChange={(e)=>{setIsPublished(e.target.checked)}}/>
+          </label>
+        )}
+      </div>
     </div>
 
   );
