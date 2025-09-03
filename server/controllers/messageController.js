@@ -2,6 +2,7 @@ import ImageKit from "imagekit";
 import Chat from "../models/chat.js";
 import User from "../models/user.js";
 import axios from 'axios'
+import openai from '../config/openai.js'
 
 
 export const textMessageContoller = async (req, res) => {
