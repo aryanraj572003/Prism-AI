@@ -13,8 +13,6 @@ const app = express();
 await connectDB();
 
 
-
-
 app.post('/api/stripe',express.raw({type:'application/json'},stripeWebhooks))
 
 const PORT  = process.env.PORT || 8000;
