@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+@import "tailwindcss";
+
+
+*{
+  font-family: "Outfit",sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme{
+  --color-primary:#E6CCFF ;
+}
+
+::-webkit-scrollbar{
+  display:none;
+}
+
+.reset-tw :not(pre):not(code){
+  all:revert;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+  }
+  50% {
+    box-shadow: 0 0 6px #ffffff, 0 0 9px #ffffff;
+  }
+  100% {
+    box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+  }
+}
+
+.animate-glow {
+  animation: glow 2s infinite alternate;
+}
+
+
+
+
