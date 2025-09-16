@@ -62,7 +62,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
 
               <div>
                 <p className='truncate w-full dark:text-white'>
-                  {chat.messages.length > 0 ? chat.messages[0].content.slice(0, 27) : "New Chat"}
+                  {chat.messages.length > 0 ? chat.messages[0].content.slice(0, 25) : "New Chat"}
                 </p>
                 <p className='text-xs text-gray-500 dark:text-[#B1A6C0]'>
                   {moment(chat.updatedAt).fromNow()}</p>
