@@ -39,16 +39,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export const purchasePlan = async (req, res) => {
     try {
         const { planId } = req.body
+        console.log("Purchase plan called with planId:", planId);
         const userId = req.user._id
         const plan = plans.find(plan => plan._id === planId)
+        console.log(plan);
 
         if (!plan) {
             return res.json({ success: false, message: "Invalid plan" })
         }
 
         const transaction = await Transaction.create({
-            userId: user.id,
-            plan: plan._id,
+            userId: userId,
+            planId: plan._id,
             amount: plan.price,
             credits: plan.credits,
             isPaid: false,

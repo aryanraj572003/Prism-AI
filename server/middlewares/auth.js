@@ -13,7 +13,6 @@ export const protect = async(req,res,next)=>{
         if(!user){
             return res.json({success: false , message:"Not authorized"})
         }
-
         req.user = user;
         next();
     } catch (error) {
