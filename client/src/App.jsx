@@ -7,7 +7,7 @@ import Community from './pages/Community'
 import './assets/prism.css'
 import Loading from './pages/Loading'
 import { useAppContext } from './context/AppContext'
-import Login from './pages/login'
+import Login from './pages/Login'
 import {Toaster} from 'react-hot-toast'
 
 
