@@ -80,12 +80,7 @@ export const AppContextProvider = ({children})=>{
     },[token]);
 
     useEffect(()=>{
-        if(theme === 'dark'){
-            document.documentElement.classList.add('dark');
-        }
-        else{
-            document.documentElement.classList.remove('dark');
-        }
+        document.documentElement.classList.add('dark');
     },[theme])
     localStorage.setItem('theme',theme)
 

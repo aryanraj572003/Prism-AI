@@ -14,8 +14,8 @@ const Message = ({ message }) => {
     <div>
       {message.role === "user" ? (
         <div className='flex items-start justify-end my-4 gap-2'>
-          <div className='flex flex-col gap-2 p-2 px-4 py-3 bg-slate-50 dark:bg-[#352372]/50 border border-[#80609F]/30 rounded-md max-w-2xl'>
-            <p className='text-sm text-gray-800 dark:text-gray-200'>{message.content}</p>
+          <div className='flex flex-col gap-2 p-2 px-4 py-3 bg-[#352372]/50 border border-[#80609F]/50 rounded-md max-w-2xl'>
+            <p className='text-sm text-gray-200'>{message.content}</p>
           </div>
           <img src={assets.user_icon} alt="user" className='w-8 rounded-full' />
         </div>

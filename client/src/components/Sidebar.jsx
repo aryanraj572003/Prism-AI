@@ -37,10 +37,10 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
     }
   }
   return (
-    <div className={`flex flex-col h-screen min-w-72 p-5 dark:bg-gradient-to-b from-[#242124]/30 to-[#000000]/30 border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-1 ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
+    <div className={`flex flex-col h-screen min-w-72 p-5 bg-gradient-to-b from-[#242124]/30 to-[#000000]/30 border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-1 ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
       {/* Logo */}
       <img
-        src={theme === 'dark' ? assets.logo_full : assets.logo_full_dark}
+        src={assets.logo_full }
         alt=""
         className='w-full max-w-48' />
       <MagneticButton>
@@ -50,21 +50,21 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
           <span className='mr-2 text-xl'>+</span> New Chat
         </button>
       </MagneticButton>
-      <div className='flex items-center gap-2 p-2 mt-4 border border-gray-400 dark:border-white/20 rounded-md'>
+      <div className='flex items-center gap-2 p-2 mt-4 border border-white/20 rounded-md'>
         <img src={assets.search_icon} className='w-4 not-dark:invert' />
         <input onChange={(e) => { setSearch(e.target.value) }} value={search} type='text' placeholder='Search Conversation' className='text-xs text-gray-200 placeholder:text-gray-200 outline-none' />
       </div>
-      {chats.length > 0 && <p className='mt-4 text-sm dark:text-white'>Recent Chats</p>}
+      {chats.length > 0 && <p className='mt-4 text-sm text-white'>Recent Chats</p>}
       <div className='flex-1 overflow-y-scroll mt-3 text-sm space-y-3'>
         {
           chats.filter((chat) => chat.messages[0] ? chat.messages[0]?.content.toLowerCase().includes(search.toLowerCase()) : chat.userName.toLowerCase().includes(search.toLowerCase())).map((chat) => (
-            <div onClick={() => { navigate('/'); setSelectedChat(chat); setIsMenuOpen(false) }} key={chat.id} className='p-2 px-4 dark:bg-[#57317C]/10 border border-gray-300 dark:border-[#80609F]/15 rounded-md cursor-pointer flex justify-between group'>
+            <div onClick={() => { navigate('/'); setSelectedChat(chat); setIsMenuOpen(false) }} key={chat.id} className='p-2 px-4 bg-[#57317C]/10 border border border-white/15 border-[#80609F]/15 rounded-md cursor-pointer flex justify-between group'>
 
               <div>
-                <p className='truncate w-full dark:text-white'>
+                <p className='truncate w-full text-white'>
                   {chat.messages.length > 0 ? chat.messages[0].content.slice(0, 25) : "New Chat"}
                 </p>
-                <p className='text-xs text-gray-500 dark:text-[#B1A6C0]'>
+                <p className='text-xs text-[#B1A6C0]'>
                   {moment(chat.updatedAt).fromNow()}</p>
               </div>
               <img src={assets.bin_icon} className='hidden group-hover:block w-4 cursor-pointer not-dark:invert' alt='' onClick={e => toast.promise(deleteChat(e, chat._id), { loading: 'deleteing...' })} />
@@ -72,7 +72,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
           ))
         }
       </div>
-      <div onClick={() => { navigate('/community'); setIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all dark:text-white'>
+      <div onClick={() => { navigate('/community'); setIsMenuOpen(false) }} className='flex items-center gap-2 p-3 mt-4 border border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all text-white'>
         <img src={assets.gallery_icon} alt="" className='w-4.5 not-dark:invert ' />
         <div className='flex flex-col text-sm'>
           <p>Community Images</p>
@@ -85,14 +85,14 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
       >
         <img src={assets.diamond_icon} alt="" className="w-4.5 dark:invert" />
         <div className="flex flex-col text-sm text-left">
-          <p className="dark:text-white">Credits {user?.credits}</p>
+          <p className="text-white">Credits   {user?.credits}</p>
           <p className="text-xs text-gray-400">Purchase credits to use Prism AI</p>
         </div>
       </HoverBorderGradient>
 
-      <div className='flex items-center gap-3 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer group'>
+      <div className='flex items-center gap-3 p-3 mt-4 border border-white/15 rounded-md cursor-pointer group'>
         <img src={assets.user_icon} className='w-7 rounded-full' alt="" />
-        <p className='flex-1 text-sm dark:text-primary truncate'>
+        <p className='flex-1 text-primary truncate'>
           {user ? user.name : 'Login your account'}
         </p>
         {user && <img onClick={logout} src={assets.logout_icon} className='h-5 cursor-pointer hidden not-dark:invert group-hover:block' />}

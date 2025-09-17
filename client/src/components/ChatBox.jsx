@@ -99,7 +99,7 @@ export const ChatBox = () => {
         {messages.length === 0 && (
           <div className="h-full flex flex-col items-center justify-center gap-2 text-primary">
             <img src={assets.logo_full} alt="" className="w-full max-w-56 sm:max-w-68" />
-            <p className="mt-5 text-4xl sm:text-6x1 text-center text-gray-400 dark:text-white">Ask me Anything</p>
+            <p className="mt-5 text-4xl sm:text-6x1 text-center text-white/60">Ask me Anything</p>
           </div>
         )}
 
@@ -128,7 +128,7 @@ export const ChatBox = () => {
 
 
       <form
-        className={`bg-primary/20 dark:bg-[#352372]/30 border border-primary dark:border-[#80609F]/30 
+        className={` bg-[#352372]/30 border border-[#80609F]/30 
       w-full max-w-2xl p-3 pl-4 mx-auto flex gap-4 items-center text-white transition-all
       ${isExpanded ? "rounded-2xl" : "rounded-full"}`}
       >
