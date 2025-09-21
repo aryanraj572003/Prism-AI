@@ -16,7 +16,7 @@ export const AppContextProvider = ({ children }) => {
     const [selectedChat, setSelectedChat] = useState(null);
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [token, setToken] = useState(localStorage.getItem('prismtoken') || null);
-    const [loadingUser, setLoadingUser] = useState(true);
+    // const [loadingUser, setLoadingUser] = useState(true);
 
     const fetchUser = async () => {
         try {
@@ -104,7 +104,7 @@ export const AppContextProvider = ({ children }) => {
     }, [user])
 
 
-    const value = { navigate, user, setUser, fetchUser, chats, setChats, selectedChat, setSelectedChat, theme, setTheme, createNewChat, loadingUser, fetchUsersChats, token, setToken, axios };
+    const value = { navigate, user, setUser, fetchUser, chats, setChats, selectedChat, setSelectedChat, theme, setTheme, createNewChat, fetchUsersChats, token, setToken, axios };
 
     return (
         <AppContext.Provider value={value}>
