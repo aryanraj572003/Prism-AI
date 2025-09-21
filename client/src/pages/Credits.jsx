@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 const Credits = () => {
 
   const [plans , setPlans] = useState([])
-  const [loading , setLoading] = useState(true)
+  // const [loading , setLoading] = useState(true)
   const {axios , token}= useAppContext();
 
   const fetchPlans = async()=>{
@@ -23,7 +23,7 @@ const Credits = () => {
     } catch (error) {
       toast.error(error.message);
     }
-    setLoading(false);
+    // setLoading(false);
     
   }
 
@@ -44,7 +44,7 @@ const Credits = () => {
 
   useEffect(()=>{fetchPlans()},[])
 
-  if(loading) return <Loading/>
+  // if(loading) return <Loading/>
 
   return (
     <div className='max-w-7xl h-screen overflow-y-scroll mx-auto px-4 sm:px-6 lg:px-8 py-12'>
