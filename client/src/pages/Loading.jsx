@@ -58,7 +58,7 @@ const Loading = () => {
         // 4️⃣ Wait at least 5 seconds before navigating
         setTimeout(() => {
           navigate('/')
-        }, 3000)
+        }, 2000)
       }
     }
 

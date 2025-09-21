@@ -3,8 +3,6 @@ import Loading from './Loading'
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 
-
-
 const Credits = () => {
 
   const [plans , setPlans] = useState([])
@@ -13,7 +11,7 @@ const Credits = () => {
 
   const fetchPlans = async()=>{
     try {
-      const {data} = await axios.get('/api/credit/plans',{headers:{Authorization:token}});
+      const {data} = await axios.get('/api/credit/plans',{ headers: { Authorization: `Bearer ${token}` }});
       if(data.success){
         setPlans(data.plans);
       }else{
@@ -29,7 +27,7 @@ const Credits = () => {
 
   const purchasePlan = async(planId)=>{
     try {
-      const {data} = await axios.post('/api/credit/purchase',{planId},{headers:{Authorization:token}});
+      const {data} = await axios.post('/api/credit/purchase',{planId},{ headers: { Authorization: `Bearer ${token}` }});
       
       
       if(data.success){
@@ -65,7 +63,7 @@ const Credits = () => {
                   ))}
                 </ul>
               </div>
-              <button onClick={()=>toast.promise(purchasePlan(plan._id),{loading:'Processing...'})} className={`mt-6 font-medium py-2 rounded transition-colors cursor-pointer ${plan._id === 'pro'? 'bg-black text-gray-200': 'bg-gray-200 text-black'}`}>Buy Now</button>
+              <button onClick={()=>toast.promise(purchasePlan(plan._id))} className={`mt-6 font-medium py-2 rounded transition-colors cursor-pointer ${plan._id === 'pro'? 'bg-black text-gray-200': 'bg-gray-200 text-black'}`}>Buy Now</button>
             </div>
           ))
         }
