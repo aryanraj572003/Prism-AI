@@ -17,12 +17,12 @@ const Loading = () => {
       
       // If user is not signed in, redirect to home (which will show SignIn)
       if (!isSignedIn || !user) {
-        console.log('User not signed in, redirecting to home');
+        // console.log('User not signed in, redirecting to home');
         navigate('/');
         return;
       }
 
-      console.log('Loading user:', user)
+      // console.log('Loading user:', user)
 
       try {
         // 1️⃣ Send user details to backend
@@ -33,7 +33,7 @@ const Loading = () => {
         const lastName = user.lastName || ''
         const profileImage = user.profileImageUrl || ''
         
-        console.log('Clerk user:')
+        // console.log('Clerk user:')
         const { data } = await axios.post(url, {
           clerkId,
           email,
@@ -47,7 +47,7 @@ const Loading = () => {
           const freshToken = await getToken({ template: "seven_day_token" })
           setToken(freshToken)
           localStorage.setItem('prismtoken', freshToken)
-          console.log('Stored token:', freshToken)
+          // console.log('Stored token:', freshToken)
         }
 
         // 3️⃣ Fetch additional user info if needed

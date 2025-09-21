@@ -24,11 +24,11 @@ export const AppContextProvider = ({ children }) => {
                 console.warn("fetchUser called without token; skipping.");
                 return;
             }
-            console.log("Fetching user data with token:", `${token?.slice(0, 12)}...`);
+            // console.log("Fetching user data with token:", `${token?.slice(0, 12)}...`);
             const { data } = await axios.get("/api/user/data", {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("/api/user/data response:", data);
+            // console.log("/api/user/data response:", data);
             if (data.success) {
                 setUser(data.user);
             } else {
@@ -58,7 +58,7 @@ export const AppContextProvider = ({ children }) => {
     const fetchUsersChats = async () => {
         try {
             const { data } = await axios.get('/api/chat/get', { headers: { Authorization: `Bearer ${token}` } });
-            console.log("Fetched chats:", data);
+            // console.log("Fetched chats:", data);
             if (data.success) {
                 setChats(data.chats);
                 if (data.chats.length === 0) {
@@ -79,7 +79,7 @@ export const AppContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            console.log("Token found, fetching user...");
+            // console.log("Token found, fetching user...");
             fetchUser();
         } else {
             setUser(null);

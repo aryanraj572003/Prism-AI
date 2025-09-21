@@ -42,7 +42,7 @@ const App = () => {
     ):(
       <div className='bg-gradient-to-b from-[#242124] to-[#000000] flex items-center justify-center h-screen w-screen'>
         {/* <Login/> */}
-        {console.log("User not logged in")}
+        {/* {console.log("User not logged in")} */}
         <SignIn
         afterSignInUrl="/loading"/>
       </div>
