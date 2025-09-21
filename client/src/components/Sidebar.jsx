@@ -7,17 +7,29 @@ import MagneticButton from './ui/magnetic-button';
 import { HoverBorderGradient } from './ui/hover-border-gradient';
 import toast from 'react-hot-toast';
 import Loading from '../pages/Loading';
+import { useAuth } from '@clerk/clerk-react';
 
 const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
 
   const { setSelectedChat, chats, theme, setTheme, user, navigate, createNewChat, axios, setChats, fetchUsersChats, setToken, token } = useAppContext();
+  const { signOut } = useAuth();
 
   const [search, setSearch] = useState('');
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-    toast.success("Logged out successfully");
+  const logout = async () => {
+    try {
+      // Clear local app state first
+      localStorage.removeItem('prismtoken');
+      setToken(null);
+      
+      // Sign out from Clerk (this will clear Clerk session)
+      await signOut();
+      
+      toast.success("Logged out successfully");
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast.error("Error during logout");
+    }
   }
 
   const deleteChat = async (e, chatId) => {
@@ -25,7 +37,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
     try {
       const confirm = window.confirm("Are you sure you want to delete this chat?");
       if (!confirm) return;
-      const { data } = await axios.post('/api/chat/delete', { chatId }, { headers: { Authorization: token } });
+      const { data } = await axios.post('/api/chat/delete', { chatId }, { headers: { Authorization: `Bearer ${token}` } });
 
       if (data.success) {
         setChats(prev => prev.filter(chat => chat._id !== chatId));
@@ -93,7 +105,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
       <div className='flex items-center gap-3 p-3 mt-4 border border-white/15 rounded-md cursor-pointer group'>
         <img src={assets.user_icon} className='w-7 rounded-full' alt="" />
         <p className='flex-1 text-primary truncate'>
-          {user ? user.name : 'Login your account'}
+          {user ? user.firstName : 'Login your account'}
         </p>
         {user && <img onClick={logout} src={assets.logout_icon} className='h-5 cursor-pointer hidden not-dark:invert group-hover:block' />}
       </div>

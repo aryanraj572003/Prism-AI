@@ -9,7 +9,7 @@ import Loading from './pages/Loading'
 import { useAppContext } from './context/AppContext'
 import Login from './pages/Login'
 import {Toaster} from 'react-hot-toast'
-
+import {SignIn} from '@clerk/clerk-react'
 
 const App = () => {
 
@@ -18,15 +18,15 @@ const App = () => {
   const[isMenuOpen, setIsMenuOpen] = useState(false);
   const {pathname}= useLocation();
 
-  if(pathname === '/loading' || loadingUser) return <Loading/>
+  if(pathname === '/loading') return <Loading/>
 
   return (
     <>
     <Toaster/>
     {isMenuOpen && <img src={assets.close_icon} className='absolute top-3 left-3 w-8 h-8 cursor:pointer md:hidden not-dark:invert ' onClick={()=>{setIsMenuOpen(true)}}/>}
-
     {user?(
       <div className='bg-gradient-to-b from-[#242124] to-[#000000]'>
+        
         <div className='flex h-screen w-screen'>
           
           <Sidebar isMenuOpen={isMenuOpen} setIsMenuOpen = {setIsMenuOpen}/>
@@ -41,7 +41,10 @@ const App = () => {
       </div>
     ):(
       <div className='bg-gradient-to-b from-[#242124] to-[#000000] flex items-center justify-center h-screen w-screen'>
-        <Login/>
+        {/* <Login/> */}
+        {console.log("User not logged in")}
+        <SignIn
+        afterSignInUrl="/loading"/>
       </div>
     )}
       
