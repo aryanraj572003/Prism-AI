@@ -39,5 +39,21 @@
 }
 
 
+/* Temporary highlight for targeted chat message */
+@keyframes flashHighlight {
+  0% {
+    background-color: rgba(167, 166, 165, 0.25); /* amber-300/25 */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.message-highlight {
+  animation: flashHighlight 1s ease-in-out;
+  border-radius: 0.5rem; /* rounded */
+}
+
+
 
 

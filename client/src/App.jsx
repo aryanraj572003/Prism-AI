@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import {ChatBox} from './components/ChatBox'
+import MessageSleekbar from './components/MessageSleekbar'
 import Credits from './pages/Credits'
 import Community from './pages/Community'
 import './assets/prism.css'
@@ -36,6 +37,7 @@ const App = () => {
             <Route path='/Loading' element={<Loading />} />
             
           </Routes>
+          <MessageSleekbar />
         </div>
       </div>
     ):(

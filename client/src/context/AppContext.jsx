@@ -17,6 +17,8 @@ export const AppContextProvider = ({ children }) => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [token, setToken] = useState(localStorage.getItem('prismtoken') || null);
     // const [loadingUser, setLoadingUser] = useState(true);
+    // Timestamp of a message we want to auto-scroll to in ChatBox
+    const [scrollToMessageTs, setScrollToMessageTs] = useState(null);
 
     const fetchUser = async () => {
         try {
@@ -104,7 +106,7 @@ export const AppContextProvider = ({ children }) => {
     }, [user])
 
 
-    const value = { navigate, user, setUser, fetchUser, chats, setChats, selectedChat, setSelectedChat, theme, setTheme, createNewChat, fetchUsersChats, token, setToken, axios };
+    const value = { navigate, user, setUser, fetchUser, chats, setChats, selectedChat, setSelectedChat, theme, setTheme, createNewChat, fetchUsersChats, token, setToken, axios, scrollToMessageTs, setScrollToMessageTs };
 
     return (
         <AppContext.Provider value={value}>

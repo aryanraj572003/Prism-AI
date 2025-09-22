@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 
 export const ChatBox = () => {
-  const { selectedChat, theme, user, axios, token, setUser } = useAppContext();
+  const { selectedChat, theme, user, axios, token, setUser, scrollToMessageTs, setScrollToMessageTs } = useAppContext();
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -93,6 +93,24 @@ export const ChatBox = () => {
     }
   }, [messages])
 
+  // Scroll to a specific message if requested from the Sidebar
+  useEffect(() => {
+    if (!scrollToMessageTs) return;
+    // Delay slightly to ensure messages are rendered
+    const t = setTimeout(() => {
+      const el = document.getElementById(`msg-${scrollToMessageTs}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('message-highlight');
+        setTimeout(() => {
+          el.classList.remove('message-highlight');
+        }, 1000);
+      }
+      setScrollToMessageTs(null);
+    }, 50);
+    return () => clearTimeout(t);
+  }, [scrollToMessageTs, messages, setScrollToMessageTs]);
+
   return (
     <div className="flex-1 flex flex-col justify-between m-5 md:m-1 xl:mx-30 max-md mt-14 2xl:pr-40">
       <div ref={containerRef} className="flex-1 mb-3 overflow-y-scroll">
@@ -103,9 +121,11 @@ export const ChatBox = () => {
           </div>
         )}
 
-        {messages.map((message, index) =>
-          <Message key={index} message={message} />
-        )}
+        {messages.map((message, index) => (
+          <div key={message.timestamp || index} id={message.timestamp ? `msg-${message.timestamp}` : undefined}>
+            <Message message={message} />
+          </div>
+        ))}
       </div >
       {/* {
         // loading && <div className="loader flex items-center gap-1.5">
