@@ -26,5 +26,5 @@ jobs:
 
       - name: Backend Compilation (Syntax Check)
         run: |
-          cd api
+          cd server
           find . -name "*.js" -exec node --check {} +
