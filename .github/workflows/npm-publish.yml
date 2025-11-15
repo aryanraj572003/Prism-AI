@@ -29,7 +29,7 @@ jobs:
           cd server
           find . -name "*.js" -exec node --check {} +
   gitleaks-scan:
-    runs-on: Agent-1
+    runs-on: Agent-l1
     needs: compile
     steps:
       - name: Checkout code
@@ -41,5 +41,5 @@ jobs:
       - name: Gitleaks Scan
         run: |
           gitleaks detect --source ./client --exit-code 1
-          gitleaks detect --source ./api --exit-code 1
+          gitleaks detect --source ./server --exit-code 1
 
