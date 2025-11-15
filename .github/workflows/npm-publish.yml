@@ -8,7 +8,7 @@ on:
 
 jobs:
   compile:
-    runs-on: Agent-1
+    runs-on: Agent-l1
 
     steps:
       - name: Checkout code
