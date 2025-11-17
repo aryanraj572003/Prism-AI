@@ -34,7 +34,7 @@ COPY . .
 # COPY --from=builder /app/build ./build    # for Next.js/React builds
 # COPY --from=builder /app/. .              # fallback for normal JS apps
 
-# Expose port
+# Expose port 
 EXPOSE 8000
 
 # Start the server
