@@ -18,7 +18,6 @@ COPY server/routes ./server/routes
 # Copy individual files
 COPY server.js .
 COPY vercel.json .
-COPY .env .
 
 # Expose port
 EXPOSE 8000
