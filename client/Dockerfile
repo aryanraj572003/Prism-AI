@@ -1,11 +1,31 @@
-FROM node:18-alpine
-
+# Step 1: Build the app
+FROM node:18-alpine AS builder
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --only=production
-COPY . .
-RUN npm run build
-EXPOSE 8000
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
 
+# Copy ONLY dependencies first
+COPY package*.json ./
+
+RUN npm install
+
+# Copy only required project files
+COPY src ./src
+COPY public ./public
+COPY vite.config.js ./
+COPY index.html ./
+
+RUN npm run build
+
+
+# Step 2: Serve the build
+FROM node:18-alpine
+
+WORKDIR /app
+
+RUN npm install -g serve
+
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 8000
+
+CMD ["serve", "-s", "dist", "-l", "8000"]

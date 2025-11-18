@@ -1,41 +1,26 @@
-# ============================
-# 1️⃣ Build Stage
-# ============================
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock)
+# Copy dependency files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --only=production
+# Install only production dependencies
+RUN npm install --production
 
-# Copy all source code
-COPY . .
+# Copy required backend folders manually
+COPY server/config ./server/config
+COPY server/controllers ./server/controllers
+COPY server/middlewares ./server/middlewares
+COPY server/models ./server/models
+COPY server/routes ./server/routes
 
-# Optional: run build step (for TS, Next.js, etc.)
-# Remove if not needed
-# RUN npm run build
+# Copy individual files
+COPY server.js .
+COPY vercel.json .
+COPY .env .
 
-
-# # ============================
-# # 2️⃣ Production Stage
-# # ============================
-# FROM node:18-alpine AS runner
-
-# WORKDIR /app
-
-# # Copy only necessary files from builder
-# COPY --from=builder /app/package*.json ./
-# COPY --from=builder /app/node_modules ./node_modules
-# COPY --from=builder /app/dist ./dist      # for TypeScript builds
-# COPY --from=builder /app/build ./build    # for Next.js/React builds
-# COPY --from=builder /app/. .              # fallback for normal JS apps
-
-# Expose port 
+# Expose port
 EXPOSE 8000
 
-# Start the server
-CMD ["node", "start"]
+CMD ["node", "server.js"]
