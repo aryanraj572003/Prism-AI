@@ -119,7 +119,7 @@ jobs:
         with:
           context: ./server
           push: true
-          tags: aryan572003/backend:latest
+          tags: aryan5720003/backend:latest
           file: ./server/Dockerfile
   build_frontend_docker_image_and_push:
     runs-on: ubuntu-latest
@@ -145,7 +145,7 @@ jobs:
         with:
           context: ./client
           push: true
-          tags: aryan572003/frontend:latest
+          tags: aryan5720003/frontend:latest
           file: ./client/Dockerfile
 
   
