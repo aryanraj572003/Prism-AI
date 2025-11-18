@@ -22,5 +22,4 @@ COPY .env .
 
 # Expose port
 EXPOSE 8000
-
 CMD ["node", "server.js"]
